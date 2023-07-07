@@ -1,6 +1,6 @@
 var validator = require("validator");
 
-const cleanUpAndValidate = ({ name, username, email, password }) => {
+const registerCleanUpAndValidate = ({ name, username, email, password }) => {
   return new Promise((resolve, reject) => {
     if (!name || !username || !email || !password) {
       reject("Missing Credentials!!");
@@ -38,4 +38,22 @@ const cleanUpAndValidate = ({ name, username, email, password }) => {
   });
 };
 
-module.exports = { cleanUpAndValidate };
+const loginCleanUpAndValidate = ({ loginId, password }) => {
+  return new Promise((resolve, reject) => {
+    if (!loginId || !password) {
+      reject("Missing Credentials!!");
+    }
+
+    if (typeof loginId !== "string") {
+      reject("Invalid Login-ID!");
+    }
+
+    if (typeof password !== "string") {
+      reject("Invalid Password!");
+    }
+
+    resolve();
+  });
+};
+
+module.exports = { registerCleanUpAndValidate, loginCleanUpAndValidate };
